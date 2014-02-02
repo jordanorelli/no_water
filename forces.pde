@@ -16,6 +16,8 @@ void setup() {
   smooth();
   p = new ParticleBox(this, 100, 100, 100, 100, 3);
   r = new MouseRepellant(this);
+  LineRepellant lr = new LineRepellant(-80, height*0.25, width+80, height*0.75);
+  p.registerRepellant(lr);
   p.registerRepellant(r);
   setupControls();
 }
@@ -50,6 +52,7 @@ void setupControls() {
 
 void draw() {
   background(255);
+  p.draw();
   guides();
 }
 

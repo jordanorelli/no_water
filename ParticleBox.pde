@@ -14,10 +14,12 @@ public class ParticleBox implements Iterable<Particle> {
         this.particles.add(new Particle(app, this.repellants, this.origin.x + xx * size, this.origin.y + yy * size, size));
       }
     }
-    app.registerMethod("draw", this);
   }
   
   void draw() {
+    for (Particle p : this) {
+      p.draw();
+    }
     if (showRepellants) {
       this.drawRepellants(); 
     }

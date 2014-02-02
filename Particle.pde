@@ -14,7 +14,6 @@ public class Particle {
     this.repellants = repellants;
     this.mass = 10;
     app.registerMethod("pre", this);
-    app.registerMethod("draw", this);
   }
   
   PVector forces() {
