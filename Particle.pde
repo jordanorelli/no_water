@@ -6,15 +6,15 @@ public class Particle {
   private ArrayList<Repellant> repellants;
   private float mass;
 
-  Particle (PApplet app, float x, float y, float size) {
+  Particle (PApplet app, ArrayList<Repellant> repellants, float x, float y, float size) {
     this.anchor = new PVector(x, y);
     this.origin = new PVector(x, y);
     this.velocity = new PVector(0, 0);
     this.size = size;
-    this.repellants = new ArrayList<Repellant>();
+    this.repellants = repellants;
     this.mass = 10;
-    app.registerDraw(this);
-    app.registerPre(this);
+    app.registerMethod("pre", this);
+    app.registerMethod("draw", this);
   }
   
   PVector forces() {
@@ -33,7 +33,7 @@ public class Particle {
       float n = norm(dist, 100, 0);
       PVector diff = PVector.sub(this.origin, r.getLocation());
       diff.normalize();
-      diff.mult(n*n*10.0);
+      diff.mult(n*n*r.mag());
       f.add(diff);
     }
     return f;
@@ -100,10 +100,6 @@ public class Particle {
 
     this.drawForces();
     popMatrix();
-  }
-  
-  void registerRepellant(Repellant r) {
-    this.repellants.add(r);
   }
 }
 

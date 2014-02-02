@@ -3,7 +3,7 @@ import controlP5.*;
 ControlP5 cp5;
 PApplet app = this;
 ParticleBox p;
-Repellant r;
+MouseRepellant r;
 boolean debug = false;
 boolean showGuides = false;
 boolean showRepellants = false;
@@ -15,7 +15,7 @@ void setup() {
   size(500, 500);
   smooth();
   p = new ParticleBox(this, 100, 100, 100, 100, 3);
-  r = new Repellant(this);
+  r = new MouseRepellant(this);
   p.registerRepellant(r);
   setupControls();
 }
@@ -80,7 +80,6 @@ void keyPressed(KeyEvent e) {
     println("oh it's a space.");
     break;
   case BACKSPACE:
-    r.setLocation(-200, -200);
     break;
   default:
     println(e.getKey());
@@ -88,10 +87,7 @@ void keyPressed(KeyEvent e) {
   }
 }
 
-void mouseClicked(MouseEvent e) {
-  r.setLocation(e.getX(), e.getY());  
-}
-
-void mouseDragged(MouseEvent e) {
-  r.setLocation(e.getX(), e.getY());
+void mouseWheel(MouseEvent e) {
+  r.incMag(e.getAmount());
+  println(e.getAmount());
 }
