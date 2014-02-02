@@ -12,5 +12,6 @@ with the [controlp5](http://www.sojamo.de/libraries/controlP5/) library, which
 I'll probably use a little bit in all of my Processing projects moving forward.
 
 Anyway, the output of running the code can be exported to a series of images
-and compressed into an animated gif that looks like this:
+and compressed into an animated gif that looks like this:  
+
 ![no water, no fish](out.gif "no water, no fish").
