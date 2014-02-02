@@ -89,5 +89,4 @@ void keyPressed(KeyEvent e) {
 
 void mouseWheel(MouseEvent e) {
   r.incMag(e.getAmount());
-  println(e.getAmount());
 }

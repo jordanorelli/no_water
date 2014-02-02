@@ -14,6 +14,23 @@ public class ParticleBox implements Iterable<Particle> {
         this.particles.add(new Particle(app, this.repellants, this.origin.x + xx * size, this.origin.y + yy * size, size));
       }
     }
+    app.registerMethod("draw", this);
+  }
+  
+  void draw() {
+    if (showRepellants) {
+      this.drawRepellants(); 
+    }
+  }
+  
+  void drawRepellants() {
+    for (Repellant r : this.repellants) {
+      PVector l = r.getLocation();
+      ellipseMode(CENTER);
+      fill(255, 0, 0);
+      noStroke();
+      ellipse(l.x, l.y, min(r.mag(), 50.0), min(r.mag(), 50.0));
+    }
   }
   
   public Iterator<Particle> iterator() {

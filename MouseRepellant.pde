@@ -4,7 +4,8 @@ public class MouseRepellant implements Repellant {
   
   MouseRepellant(PApplet app) {
     this.origin = new PVector(mouseX, mouseY);
-    this.magnitude = 10.0;
+    this.magnitude = 0;
+    app.registerMethod("mouseEvent", this);
   }
   
   PVector getLocation() {
@@ -19,5 +20,17 @@ public class MouseRepellant implements Repellant {
   
   void incMag(float delta) {
     this.magnitude += delta;
+  }
+  
+  void mouseEvent(MouseEvent e) {
+    switch (e.getButton()) {
+    case LEFT:
+      this.magnitude = 10.0;
+      break;
+    case RIGHT:
+      this.magnitude = 0;
+      break;
+    case CENTER:
+    }
   }
 }
