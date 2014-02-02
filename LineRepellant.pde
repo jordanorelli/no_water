@@ -6,7 +6,7 @@ public class LineRepellant implements Repellant {
   LineRepellant(float x1, float y1, float x2, float y2) {
     this.start = new PVector(x1, y1);
     this.end = new PVector(x2, y2);
-    this.period = 240;
+    this.period = 400;
   }
 
   PVector getLocation() {
@@ -18,6 +18,6 @@ public class LineRepellant implements Repellant {
   }
   
   float mag() {
-    return 10.0;
+    return 6.0;
   }
 }

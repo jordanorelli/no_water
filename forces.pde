@@ -11,13 +11,16 @@ boolean showForces = false;
 boolean logPosition = false;
 boolean wireframe = false;
 
+int startRecordFrame = -1;
+int period = 120;
+
 void setup() {
   size(500, 500);
   smooth();
   p = new ParticleBox(this, 100, 100, 100, 100, 3);
   r = new MouseRepellant(this);
-  LineRepellant lr = new LineRepellant(-80, height*0.25, width+80, height*0.75);
-  p.registerRepellant(lr);
+//  p.registerRepellant(new LineRepellant(-80, height*0.25, width+80, height*0.75));
+  p.registerRepellant(new CircularRepellant(width*0.5, height*0.5, 120, period));
   p.registerRepellant(r);
   setupControls();
 }
@@ -46,6 +49,10 @@ void setupControls() {
   t.setPosition(10, 280);
   t.captionLabel().toUpperCase(false).setText("wireframes");
   
+  Button b = cp5.addButton("recordFramesClick");
+  b.setPosition(10, 350);
+  b.captionLabel().toUpperCase(false).setText("record");
+  
   cp5.loadProperties("config");
   cp5.hide();
 }
@@ -54,6 +61,21 @@ void draw() {
   background(255);
   p.draw();
   guides();
+  export();
+}
+
+void export() {
+  if (startRecordFrame == -1) {
+    return;
+  }
+  int frame = frameCount - startRecordFrame;
+  if (frame >= period) {
+    startRecordFrame = -1;
+    return;
+  }
+  String fname = nf(frame, 3) + ".png";
+  println(fname);
+  save(fname);
 }
 
 void guides() {
@@ -92,4 +114,9 @@ void keyPressed(KeyEvent e) {
 
 void mouseWheel(MouseEvent e) {
   r.incMag(e.getAmount());
+}
+
+void recordFramesClick() {
+  cp5.hide();
+  startRecordFrame = frameCount;
 }
