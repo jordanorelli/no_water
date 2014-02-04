@@ -19,8 +19,6 @@ void setup() {
   smooth();
   p = new ParticleBox(this, 100, 100, 100, 100, 3);
   r = new MouseRepellant(this);
-//  p.registerRepellant(new LineRepellant(-80, height*0.25, width+80, height*0.75));
-  p.registerRepellant(new CircularRepellant(width*0.5, height*0.5, 120, period));
   p.registerRepellant(r);
   setupControls();
 }

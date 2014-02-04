@@ -25,7 +25,7 @@ public class MouseRepellant implements Repellant {
   void mouseEvent(MouseEvent e) {
     switch (e.getButton()) {
     case LEFT:
-//      this.magnitude = 10.0;
+      this.magnitude = 10.0;
       break;
     case RIGHT:
       this.magnitude = 0;
